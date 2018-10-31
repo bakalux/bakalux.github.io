@@ -1,0 +1,77 @@
+body {
+  overflow: hidden;
+}
+.wrapper {
+  border: solid 1px black;
+  height: 97vh;
+  display: flex;
+  flex-direction: row;
+  padding: 5px 0px;
+}
+
+.side-block,
+main {
+  height: 100%;
+}
+
+main {
+  width: 60%;
+  margin: 0px 5px;
+  border: solid 1px grey;
+}
+
+.side-block {
+  width: 20%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+input,
+label {
+  display: block;
+}
+
+label {
+  margin: 5px 5px;
+}
+input {
+  margin: 0px 5px;
+  width: 90%;
+}
+
+h3 {
+  margin-left: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 5px;
+}
+
+li {
+  margin: 2px;
+  padding: 2px;
+  border: solid 1px grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.number {
+  font-weight: bold;
+}
+
+/*graph styles*/
+
+path {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: grey;
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
