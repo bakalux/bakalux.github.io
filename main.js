@@ -40,19 +40,22 @@ function addToDOM(data) {
 function listenToRemove() {
   let buttons = document.getElementsByClassName("remove");
   console.log(buttons);
-  for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function() {
+  for (let button of buttons) {
+    button.addEventListener("click", function() {
       dataArray = dataArray.filter(function(data) {
-        return parseInt(data.id) !== parseInt(buttons[i].id);
+        if (typeof data !== undefined) {
+          return parseInt(data.id) !== parseInt(button.id);
+        }
       });
-      buttons[i].parentNode.remove();
+      button.parentNode.remove();
       console.log(dataArray);
+      button = document.getElementsByClassName("remove");
     });
   }
 }
 
 function validateInput() {
-  const regExp = /^-?\d+$/;
+  const regExp = /^0{1}|(-?[1-9]\d*)$/;
   const input = document.getElementById("data").value;
   return regExp.test(input);
 }
