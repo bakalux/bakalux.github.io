@@ -1,16 +1,15 @@
 let globalIdCounter = 0;
 let dataArray = [];
 
-document.getElementById("data").addEventListener("keyup", function(e) {
+document.getElementById("data").addEventListener("submit", function(e) {
   e.preventDefault();
-  if (e.keyCode === 13) {
-    addData();
-    document.getElementById("data").value = "";
-  }
+
+  addData();
+  document.getElementById("input").value = "";
 });
 
 function addData() {
-  const value = document.getElementById("data").value;
+  const value = document.getElementById("input").value;
   const date = new Date();
   const data = {
     id: globalIdCounter,
