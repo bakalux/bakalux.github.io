@@ -4,9 +4,7 @@ let dataArray = [];
 document.getElementById("data").addEventListener("keyup", function(e) {
   e.preventDefault();
   if (e.keyCode === 13) {
-    if (validateInput() === true) {
-      addData();
-    }
+    addData();
     document.getElementById("data").value = "";
   }
 });
@@ -52,10 +50,4 @@ function listenToRemove() {
       button = document.getElementsByClassName("remove");
     });
   }
-}
-
-function validateInput() {
-  const regExp = /^0{1}|(-?[1-9]\d*)$/;
-  const input = document.getElementById("data").value;
-  return regExp.test(input);
 }
