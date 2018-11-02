@@ -6,6 +6,7 @@
   <title>Time Value Graph</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+  <script src="https://d3js.org/d3.v5.js"></script>
 </head>
 
 <body>
@@ -16,22 +17,7 @@
       <label for="data">Data</label>
       <input type="text" id="data" name="data">
       <h3>List of values</h3>
-      <ul class="values">
-        <li class="value">
-          <span class="time">57:45:333</span>
-          <span class="number">5</span>
-          <button class="remove">Remove</button>
-        </li>
-        <li class="value">
-          <span class="time">57:55:245</span>
-          <span class="number">-7</span>
-          <button class="remove">Remove</button>
-        </li>
-        <li class="value">
-          <span class="time">58:25:133</span>
-          <span class="number">1</span>
-          <button class="remove">Remove</button>
-        </li>
+      <ul class="values" id="values">
       </ul>
     </aside>
   </div>
