@@ -1,9 +1,8 @@
 let globalIdCounter = 0;
 let dataArray = [];
 
-document.getElementById("data").addEventListener("submit", function(e) {
+document.getElementById("data").addEventListener("submit", e => {
   e.preventDefault();
-
   addData();
   document.getElementById("input").value = "";
 });
@@ -38,8 +37,8 @@ function listenToRemove() {
   let buttons = document.getElementsByClassName("remove");
   console.log(buttons);
   for (let button of buttons) {
-    button.addEventListener("click", function() {
-      dataArray = dataArray.filter(function(data) {
+    button.addEventListener("click", () => {
+      dataArray = dataArray.filter(data => {
         if (typeof data !== undefined) {
           return parseInt(data.id) !== parseInt(button.id);
         }
