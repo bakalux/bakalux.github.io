@@ -59,3 +59,9 @@ li {
 .number {
   font-weight: bold;
 }
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
