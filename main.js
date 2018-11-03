@@ -50,12 +50,20 @@ function listenToRemove() {
   }
 }
 
-var margin = { top: 20, right: 20, bottom: 30, left: 50 },
-  width = 960 - margin.left - margin.right,
-  height = 500 - margin.top - margin.bottom;
+var margin = { top: 30, right: 20, bottom: 30, left: 50 },
+  width = 500 - margin.left - margin.right,
+  height = 250 - margin.top - margin.bottom;
+
+// Set the scales ranges
+var x = d3.scaleTime().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
+
+// Define the axes
+var xAxis = d3.axisBottom().scale(x);
+var yAxis = d3.axisLeft().scale(y);
 
 var svg = d3
-  .select("main")
+  .select("body")
   .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -63,55 +71,60 @@ var svg = d3
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 function drawGraph() {
-  //graph
-  // set the dimensions and margins of the graph
+  // Parse the date / time
 
-  // parse the date / time
-  var parseTime = d3.timeParse("%M:%S:%L");
+  // force types
+  function type(dataArray) {
+    dataArray.forEach(function(d) {
+      d.date = new Date(d.date).getTime;
+      d.value = +d.value;
+    });
+    return dataArray;
+  }
+  data = type(dataArray);
 
-  // set the ranges
-  var x = d3.scaleTime().range([0, width]);
-  var y = d3.scaleLinear().range([height, 0]);
-
-  // define the line
-  var valueline = d3
+  // create a line based on the data
+  var line = d3
     .line()
     .x(function(d) {
-      console.log(d.date);
-      return d.date;
+      return x(d.date);
     })
     .y(function(d) {
-      console.log(d.value);
-      return d.value;
+      return y(d.value);
     });
 
-  // append the svg obgect to the body of the page
-  // appends a 'group' element to 'svg'
-  // moves the 'group' element to the top left margin
+  // Add the svg canvas
 
-  // format the data
-  dataArray.forEach(function(d) {
-    d.date = parseTime(d.date);
-    d.value = +d.value;
-  });
-
-  // Scale the range of the data
-  x.domain(
-    d3.extent(dataArray, function(d) {
-      return d.date;
-    })
-  );
-  y.domain([
-    0,
-    d3.max(dataArray, function(d) {
-      return d.value;
+  // set the domain range from the data
+  x.domain([
+    d3.min(data, function(d) {
+      return Math.floor(d.date - 20000);
+    }),
+    d3.max(data, function(d) {
+      return Math.floor(d.date + 20000);
     })
   ]);
 
-  // Add the valueline path.
+  y.domain(
+    d3.extent(data, function(d) {
+      return d.value;
+    })
+  );
+  // draw the line created above
   svg
     .append("path")
-    .data([dataArray])
-    .attr("class", "line")
-    .attr("d", valueline);
+    .data([data])
+    .style("fill", "none")
+    .style("stroke", "steelblue")
+    .style("stroke-width", "2px")
+    .attr("d", line);
+
+  // Add the X Axis
+  svg
+    .append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+  // Add the Y Axis
+  svg.append("g").call(yAxis);
 }
