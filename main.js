@@ -148,14 +148,14 @@ function drawGraph() {
     .enter()
     .append("text")
     .attr("class", "label")
-    .attr("x", function(d) {
+    .attr("x", d => {
       return x(d.date);
     })
-    .attr("y", function(d) {
+    .attr("y", d => {
       return y(d.value);
     })
     .attr("dy", ".75em")
-    .text(function(d) {
+    .text(d => {
       return d.value;
     });
 }
@@ -171,12 +171,12 @@ let rightIsOpened = true;
 let leftIsOpened = true;
 left.addEventListener("click", () => {
   if (leftIsOpened === true) {
-    leftBlock.style.display = "none";
+    leftBlock.classList.toggle("closed");
     left.style.transform = "rotate(135deg)";
     left.style.left = "-4%";
     leftIsOpened = false;
   } else {
-    leftBlock.style.display = "block";
+    leftBlock.classList.toggle("closed");
     left.style.transform = "rotate(315deg)";
     left.style.left = "-3%";
     leftIsOpened = true;
@@ -185,14 +185,16 @@ left.addEventListener("click", () => {
 
 right.addEventListener("click", () => {
   if (rightIsOpened === true) {
-    rightBlock.style.display = "none";
+    rightBlock.classList.toggle("closed");
     right.style.transform = "rotate(315deg)";
     right.style.right = "-4%";
     rightIsOpened = false;
   } else {
-    rightBlock.style.display = "block";
+    rightBlock.classList.toggle("closed");
     right.style.transform = "rotate(135deg)";
     right.style.right = "-3%";
     rightIsOpened = true;
   }
 });
+
+//animation

@@ -25,9 +25,16 @@ main {
 }
 
 .side-block {
+  opacity: 1;
   width: 20%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   background-color: #d1d3d6;
+  transition: all 0.75s ease;
+}
+.closed {
+  width: 1px;
+  opacity: 0;
+  transition: all 0.75s ease;
 }
 
 .data-block input,
