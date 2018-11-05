@@ -51,9 +51,8 @@ function listenToRemove() {
   }
 }
 
-var margin = { top: 30, right: 20, bottom: 30, left: 50 },
-  width = 500 - margin.left - margin.right,
-  height = 600 - margin.top - margin.bottom;
+var width = 500;
+var height = 350;
 
 // Set the scales ranges
 var x = d3.scaleTime().range([0, width]);
@@ -62,10 +61,10 @@ var y = d3.scaleLinear().range([height, 0]);
 var svg = d3
   .select("main")
   .append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "0 0 500 350")
+  .classed("svg-content-responsive", true)
+  .append("g");
 
 function type(dataArray) {
   dataArray.forEach(function(d) {
