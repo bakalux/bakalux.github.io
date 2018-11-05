@@ -1,8 +1,8 @@
 let idCounter = 0;
 let dataArray = [];
 
-const width = 700;
-const height = 600;
+const width = 1100;
+const height = 520;
 
 // Set the scales ranges
 
@@ -13,7 +13,7 @@ const svg = d3
   .select(".svg-container")
   .append("svg")
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 150 600")
+  .attr("viewBox", "0 0 1107 520")
   .append("g");
 
 getFromStorage();
