@@ -75,7 +75,6 @@ function moveToStorage() {
 
 function getFromStorage() {
   dataArray = JSON.parse(localStorage.getItem("data"));
-  console.log(dataArray);
   if (dataArray !== null) {
     dataArray.forEach(elem => {
       const data = {
@@ -83,7 +82,6 @@ function getFromStorage() {
         date: new Date(elem.date),
         value: +elem.value
       };
-      console.log(data);
       addToDOM(data);
       drawGraph();
     });
