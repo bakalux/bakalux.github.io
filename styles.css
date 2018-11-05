@@ -34,7 +34,6 @@ main {
 .closed {
   width: 1px;
   opacity: 0;
-  transition: all 0.75s ease;
 }
 
 .data-block input,
@@ -102,7 +101,6 @@ li {
 .right-button {
   height: 50px;
   cursor: pointer;
-  z-index: 99;
   position: absolute;
   top: 40%;
 }

@@ -204,5 +204,3 @@ right.addEventListener("click", () => {
     rightIsOpened = true;
   }
 });
-
-//animation
