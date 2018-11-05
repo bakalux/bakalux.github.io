@@ -1,6 +1,23 @@
 let idCounter = 0;
 let dataArray = [];
 
+const width = 750;
+const height = 400;
+
+// Set the scales ranges
+
+const x = d3.scaleTime().range([0, width]);
+const y = d3.scaleLinear().range([height, 0]);
+
+const svg = d3
+  .select(".svg-container")
+  .append("svg")
+  .attr("preserveAspectRatio", "xMinYMin meet")
+  .attr("viewBox", "0 0 150 500")
+  .append("g");
+
+getFromStorage();
+
 document.getElementById("data").addEventListener("submit", e => {
   e.preventDefault();
   addData();
@@ -19,6 +36,7 @@ function addData() {
   idCounter++;
   listenToRemove();
   drawGraph();
+  moveToStorage();
 }
 
 function addToDOM(data) {
@@ -43,25 +61,39 @@ function listenToRemove() {
       });
       button.parentNode.remove();
       button = document.getElementsByClassName("remove");
+      moveToStorage();
       drawGraph();
     });
   }
 }
 
-const width = 750;
-const height = 400;
+function moveToStorage() {
+  const serialObj = JSON.stringify(dataArray);
+  localStorage.setItem("data", serialObj);
+  localStorage.setItem("id", idCounter);
+}
 
-// Set the scales ranges
-
-const x = d3.scaleTime().range([0, width]);
-const y = d3.scaleLinear().range([height, 0]);
-
-const svg = d3
-  .select(".svg-container")
-  .append("svg")
-  .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 150 500")
-  .append("g");
+function getFromStorage() {
+  dataArray = JSON.parse(localStorage.getItem("data"));
+  console.log(dataArray);
+  if (dataArray !== null) {
+    dataArray.forEach(elem => {
+      const data = {
+        id: elem.id,
+        date: new Date(elem.date),
+        value: +elem.value
+      };
+      console.log(data);
+      addToDOM(data);
+      drawGraph();
+    });
+    idCounter = localStorage.getItem("id");
+    listenToRemove();
+  } else {
+    dataArray = [];
+    idCounter = 0;
+  }
+}
 
 function type(dataArray) {
   dataArray.forEach(d => {
