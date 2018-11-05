@@ -52,18 +52,17 @@ function listenToRemove() {
 }
 
 var width = 500;
-var height = 350;
+var height = 500;
 
 // Set the scales ranges
 var x = d3.scaleTime().range([0, width]);
 var y = d3.scaleLinear().range([height, 0]);
 
 var svg = d3
-  .select("main")
+  .select(".svg-container")
   .append("svg")
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 500 350")
-  .classed("svg-content-responsive", true)
+  .attr("viewBox", "0 0 500 500")
   .append("g");
 
 function type(dataArray) {
