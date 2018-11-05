@@ -140,6 +140,23 @@ function drawGraph() {
     .style("stroke", "steelblue")
     .style("stroke-width", "2px")
     .attr("d", line);
+
+  svg
+    .selectAll(".text")
+    .data(data)
+    .enter()
+    .append("text")
+    .attr("class", "label")
+    .attr("x", function(d) {
+      return x(d.date);
+    })
+    .attr("y", function(d) {
+      return y(d.value);
+    })
+    .attr("dy", ".75em")
+    .text(function(d) {
+      return d.value;
+    });
 }
 
 //Triangle buttons
