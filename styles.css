@@ -12,6 +12,7 @@ body {
 .side-block,
 main {
   height: 100%;
+  position: relative;
 }
 
 main {
@@ -65,4 +66,23 @@ li {
   fill: none;
   stroke: steelblue;
   stroke-width: 2px;
+}
+
+.left-button,
+.right-button {
+  height: 50px;
+  cursor: pointer;
+  z-index: 99;
+  position: absolute;
+  top: 40%;
+}
+
+.left-button {
+  transform: rotate(-45deg);
+  left: -3%;
+}
+
+.right-button {
+  transform: rotate(135deg);
+  right: -3%;
 }

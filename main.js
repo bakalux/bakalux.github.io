@@ -113,3 +113,40 @@ function drawGraph() {
     .style("stroke-width", "2px")
     .attr("d", line);
 }
+
+//Triangle buttons
+
+const left = document.getElementById("left-button");
+const right = document.getElementById("right-button");
+const leftBlock = document.getElementById("left-block");
+const rightBlock = document.getElementById("right-block");
+
+let rightIsOpened = true;
+let leftIsOpened = true;
+left.addEventListener("click", () => {
+  if (leftIsOpened === true) {
+    leftBlock.style.display = "none";
+    left.style.transform = "rotate(135deg)";
+    left.style.left = "-4%";
+    leftIsOpened = false;
+  } else {
+    leftBlock.style.display = "block";
+    left.style.transform = "rotate(315deg)";
+    left.style.left = "-3%";
+    leftIsOpened = true;
+  }
+});
+
+right.addEventListener("click", () => {
+  if (rightIsOpened === true) {
+    rightBlock.style.display = "none";
+    right.style.transform = "rotate(315deg)";
+    right.style.right = "-4%";
+    rightIsOpened = false;
+  } else {
+    rightBlock.style.display = "block";
+    right.style.transform = "rotate(135deg)";
+    right.style.right = "-3%";
+    rightIsOpened = true;
+  }
+});
