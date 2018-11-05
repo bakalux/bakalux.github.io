@@ -1,8 +1,8 @@
 let idCounter = 0;
 let dataArray = [];
 
-const width = 750;
-const height = 400;
+const width = 700;
+const height = 600;
 
 // Set the scales ranges
 
@@ -13,7 +13,7 @@ const svg = d3
   .select(".svg-container")
   .append("svg")
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 150 500")
+  .attr("viewBox", "0 0 150 600")
   .append("g");
 
 getFromStorage();
@@ -105,6 +105,7 @@ function type(dataArray) {
 
 function drawGraph() {
   d3.selectAll("path").remove();
+  d3.selectAll("text").remove();
   // force types
   data = type(dataArray);
   // create a line based on the data
