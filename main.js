@@ -20,8 +20,18 @@ getFromStorage();
 
 document.getElementById("data").addEventListener("submit", e => {
   e.preventDefault();
-  addData();
-  document.getElementById("input").value = "";
+  const input = document.getElementById("input").value;
+  if (validate(input) === true) {
+    addData();
+    document.getElementById("input").value = "";
+  } else {
+    document.getElementById("input").value = "";
+  }
+
+  function validate(input) {
+    const regex = /^([+-]?[1-9]\d*|0)$/;
+    return regex.test(input);
+  }
 });
 
 function addData() {
