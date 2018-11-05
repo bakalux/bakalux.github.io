@@ -17,7 +17,6 @@ function addData() {
   dataArray.push(data);
   addToDOM(data);
   idCounter++;
-  console.log(dataArray);
   listenToRemove();
   drawGraph();
 }
@@ -35,7 +34,6 @@ function addToDOM(data) {
 
 function listenToRemove() {
   const buttons = document.getElementsByClassName("remove");
-  console.log(buttons);
   for (let button of buttons) {
     button.addEventListener("click", () => {
       dataArray = dataArray.filter(data => {
@@ -44,17 +42,17 @@ function listenToRemove() {
         }
       });
       button.parentNode.remove();
-      console.log(dataArray);
       button = document.getElementsByClassName("remove");
       drawGraph();
     });
   }
 }
 
-const width = 500;
-const height = 500;
+const width = 750;
+const height = 400;
 
 // Set the scales ranges
+
 const x = d3.scaleTime().range([0, width]);
 const y = d3.scaleLinear().range([height, 0]);
 
