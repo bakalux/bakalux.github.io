@@ -21,7 +21,7 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 98%;
+  height: 100%;
 }
 
 .side-block {
@@ -52,6 +52,9 @@ label {
 .data-block {
   border: solid 1px grey;
   margin-left: 5px;
+  padding-top: 5px;
+  margin-bottom: 0;
+  height: 99%;
 }
 
 svg {
