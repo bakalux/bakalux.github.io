@@ -114,3 +114,7 @@ li {
   transform: rotate(135deg);
   right: -3%;
 }
+
+.remove {
+  cursor: pointer;
+}
