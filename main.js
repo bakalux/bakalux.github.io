@@ -34,7 +34,7 @@ function addToDOM(data) {
 }
 
 function listenToRemove() {
-  let buttons = document.getElementsByClassName("remove");
+  const buttons = document.getElementsByClassName("remove");
   console.log(buttons);
   for (let button of buttons) {
     button.addEventListener("click", () => {
@@ -51,22 +51,22 @@ function listenToRemove() {
   }
 }
 
-var width = 500;
-var height = 500;
+const width = 500;
+const height = 500;
 
 // Set the scales ranges
-var x = d3.scaleTime().range([0, width]);
-var y = d3.scaleLinear().range([height, 0]);
+const x = d3.scaleTime().range([0, width]);
+const y = d3.scaleLinear().range([height, 0]);
 
-var svg = d3
+const svg = d3
   .select(".svg-container")
   .append("svg")
   .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 500 500")
+  .attr("viewBox", "0 0 150 500")
   .append("g");
 
 function type(dataArray) {
-  dataArray.forEach(function(d) {
+  dataArray.forEach(d => {
     d.date = new Date(d.date).getTime();
     d.value = +d.value;
   });
@@ -77,29 +77,28 @@ function drawGraph() {
   d3.selectAll("path").remove();
   // force types
   data = type(dataArray);
-
   // create a line based on the data
   var line = d3
     .line()
-    .x(function(d) {
+    .x(d => {
       return x(d.date);
     })
-    .y(function(d) {
+    .y(d => {
       return y(d.value);
     });
 
   // set the domain range from the data
   x.domain([
-    d3.min(data, function(d) {
+    d3.min(data, d => {
       return Math.floor(d.date - 100);
     }),
-    d3.max(data, function(d) {
+    d3.max(data, d => {
       return Math.floor(d.date + 100);
     })
   ]);
 
   y.domain(
-    d3.extent(data, function(d) {
+    d3.extent(data, d => {
       return d.value;
     })
   );
